@@ -1,3 +1,211 @@
+function transformar(){
+    var numIngres= document.getElementById('numIngresado').value;
+    var cantDigitos= numIngres.length;
+    var cad='';
+    /************************************************************
+     * CODIGO PENSADO PARA TRABAJAR CON OBJETOS
+    *************************************************************/
+    let variableProcesada = ((variable)=>{
+        let objGenerado = {
+           grupo1 : null,
+           grupo2 : null,
+           grupo3 : null,
+           grupo4 : null,
+           grupo5 : null
+        };
+        let stringInvertido = ((cadena) => {
+            let x = cadena.length;
+            let cadenaInvertida = '';
+            while (x >= 0) {
+                cadenaInvertida = cadenaInvertida + cadena.charAt(x);
+                x--;
+            }
+            return cadenaInvertida;
+        })(variable);
+    
+       switch (cantDigitos) {
+            case 1: case 2: case 3:
+               objGenerado.grupo1 = variable;
+               break;
+            case 4: case 5: case 6:
+               objGenerado.grupo2 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+               objGenerado.grupo1 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+               break;
+            case 7: case 8: case 9:
+            objGenerado.grupo3 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+            objGenerado.grupo2 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+            objGenerado.grupo1 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
+               break;
+            case 10: case 11: case 12:
+            objGenerado.grupo4 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+            objGenerado.grupo3 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+            objGenerado.grupo2 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
+            objGenerado.grupo1 = [stringInvertido[11],stringInvertido[10],stringInvertido[9]].join('');
+               break;
+            case 13: case 14: case 15:
+            objGenerado.grupo5 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+            objGenerado.grupo4 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+            objGenerado.grupo3 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
+            objGenerado.grupo2 = [stringInvertido[11],stringInvertido[10],stringInvertido[9]].join('');
+            objGenerado.grupo1 = [stringInvertido[14],stringInvertido[13],stringInvertido[12]].join('');
+               break;
+       }
+       return objGenerado;
+    })(numIngres);
+
+   console.log(variableProcesada);
+
+    /****   PARTE DE TRES DIGITOS HASTA 15 DIGITOS   *****/
+    if(cantDigitos<3){
+        switch(cantDigitos){
+            case 1:
+                transDig09(numIngres);
+            break;
+            case 2:
+                transDig10_99(numIngres,numIngres,cantDigitos);
+            break;
+        }
+    }else{
+        switch(parseInt(cantDigitos/3)){
+            case 1:
+                if((cantDigitos%3)==0){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN TRES DIGITOS
+                    ********************************************
+                    */
+                    transDig100_999(numIngres,numIngres,cantDigitos);
+
+                }else if((cantDigitos%3)==1){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN CUATRO DIGITOS
+                    ********************************************
+                    */
+                    if(numIngres[0]==1){
+                        cad='mil '+transDig100_999((numIngres[1]+numIngres[2]+numIngres[3]),numIngres,cantDigitos);
+                    }else{
+                        cad= transDig09(numIngres[0])+' mil '+transDig100_999((numIngres[1]+numIngres[2]+numIngres[3]),numIngres,cantDigitos)
+                    }
+                    document.getElementById('numTransform').value= cad;
+
+                }else if((cantDigitos%3)==2){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN CINCO DIGITOS
+                    ********************************************
+                    */
+                    
+                    cad=  transDig10_99((numIngres[0]+numIngres[1]),numIngres,cantDigitos)+' mil '+transDig100_999((numIngres[2]+numIngres[3]+numIngres[4]),numIngres,cantDigitos)
+                    document.getElementById('numTransform').value=cad;
+                };
+            break;
+
+            case 2:
+            if((cantDigitos%3)==0){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN SEIS DIGITOS
+                    ********************************************
+                    */
+                    
+                    
+                }else if((cantDigitos%3)==1){
+                    /*
+                    *********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN SIETE DIGITOS
+                    *********************************************
+                    */
+                    
+                
+
+
+                }else if((cantDigitos%3)==2){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN OCHO DIGITOS
+                    ********************************************
+                    */
+                    
+                };
+            break;
+
+            case 3:
+            if((cantDigitos%3)==0){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN NUEVE DIGITOS
+                    ********************************************
+                    */
+                    
+                }else if((cantDigitos%3)==1){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN DIES DIGITOS
+                    ********************************************
+                    */
+                    
+                }else if((cantDigitos%3)==2){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN ONCE DIGITOS
+                    ********************************************
+                    */
+                };
+            break;
+
+            case 4:
+            if((cantDigitos%3)==0){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN DOCE DIGITOS
+                    ********************************************
+                    */
+                }else if((cantDigitos%3)==1){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN TRECE DIGITOS
+                    ********************************************
+                    */
+                }else if((cantDigitos%3)==2){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN CATORCE DIGITOS
+                    ********************************************
+                    */
+                };
+            break;
+
+            case 5:
+            if((cantDigitos%3)==0){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN QUINCE DIGITOS
+                    ********************************************
+                    */
+                }else if((cantDigitos%3)==1){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN DIESISEIS DIGITOS
+                    ********************************************
+                    */
+                }else if((cantDigitos%3)==2){
+                    /*
+                    ********************************************
+                    CODIGO PARA EL CASO DE QUE SEAN DIESISIETE DIGITOS
+                    ********************************************
+                    */
+                };
+            break;
+        }
+    }
+} 
+
+
+
+
+
+
 function transDig09(numero){
     /*
     ***********************************
@@ -194,154 +402,4 @@ function transDig100_999(numero,cadTotal,cantDigitos){
 
 
 
-function transformar(){
-    var numIngres= document.getElementById('numIngresado').value;
-    var cantDigitos= numIngres.length;
-    var digitos= numIngres.split('');
-    var cad='';
-
-    /****   PARTE DE TRES DIGITOS HASTA 15 DIGITOS   *****/
-    if(cantDigitos<3){
-        switch(cantDigitos){
-            case 1:
-                transDig09(numIngres);
-            break;
-            case 2:
-                transDig10_99(numIngres,numIngres,cantDigitos);
-            break;
-        }
-    }else{
-        switch(parseInt(cantDigitos/3)){
-            case 1:
-                if((cantDigitos%3)==0){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN TRES DIGITOS
-                    ********************************************
-                    */
-                    transDig100_999(numIngres,numIngres,cantDigitos);
-
-                }else if((cantDigitos%3)==1){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN CUATRO DIGITOS
-                    ********************************************
-                    */
-                    if(numIngres[0]==1){
-                        cad='mil '+transDig100_999((numIngres[1]+numIngres[2]+numIngres[3]),numIngres,cantDigitos);
-                    }else{
-                        cad= transDig09(numIngres[0])+' mil '+transDig100_999((numIngres[1]+numIngres[2]+numIngres[3]),numIngres,cantDigitos)
-                    }
-                    document.getElementById('numTransform').value= cad;
-
-                }else if((cantDigitos%3)==2){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN CINCO DIGITOS
-                    ********************************************
-                    */
-                    
-                    cad=  transDig10_99((numIngres[0]+numIngres[1]),numIngres,cantDigitos)+' mil '+transDig100_999((numIngres[2]+numIngres[3]+numIngres[4]),numIngres,cantDigitos)
-                    document.getElementById('numTransform').value=cad;
-                };
-            break;
-
-            case 2:
-            if((cantDigitos%3)==0){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN SEIS DIGITOS
-                    ********************************************
-                    */
-                    
-                    
-                }else if((cantDigitos%3)==1){
-                    /*
-                    *********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN SIETE DIGITOS
-                    *********************************************
-                    */
-                    
-                
-
-
-                }else if((cantDigitos%3)==2){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN OCHO DIGITOS
-                    ********************************************
-                    */
-                    
-                };
-            break;
-
-            case 3:
-            if((cantDigitos%3)==0){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN NUEVE DIGITOS
-                    ********************************************
-                    */
-                    
-                }else if((cantDigitos%3)==1){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN DIES DIGITOS
-                    ********************************************
-                    */
-                    
-                }else if((cantDigitos%3)==2){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN ONCE DIGITOS
-                    ********************************************
-                    */
-                };
-            break;
-
-            case 4:
-            if((cantDigitos%3)==0){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN DOCE DIGITOS
-                    ********************************************
-                    */
-                }else if((cantDigitos%3)==1){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN TRECE DIGITOS
-                    ********************************************
-                    */
-                }else if((cantDigitos%3)==2){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN CATORCE DIGITOS
-                    ********************************************
-                    */
-                };
-            break;
-
-            case 5:
-            if((cantDigitos%3)==0){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN QUINCE DIGITOS
-                    ********************************************
-                    */
-                }else if((cantDigitos%3)==1){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN DIESISEIS DIGITOS
-                    ********************************************
-                    */
-                }else if((cantDigitos%3)==2){
-                    /*
-                    ********************************************
-                    CODIGO PARA EL CASO DE QUE SEAN DIESISIETE DIGITOS
-                    ********************************************
-                    */
-                };
-            break;
-        }
-    }
-}    
+   
