@@ -6,15 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+         body{
+            background: #d2d2d2;
+        }
         #numTransform{
             width: 700px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+        }
+        #numIngresado{
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+        #btnTransform{
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background: skyblue;
+            color: rgba(255, 255, 255, 0.87);
+            font-size: 16px;
+            margin-right: 5px;
+            box-shadow: 0 0 3px gray;
+        }
+        #btnTransform:hover{
+            background: steelblue;
+        }
+        header h1{
+            transform: translateX(120px);
+        }
+        form{
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <header>
+        <!-- Este codigo esta pensado solo para pantalla completa no adaptable -->
+        <h1>Transformar de Numeros a Letras</h1>
+    </header>
     <form action="">
         <input type="text" value="1234" id="numIngresado">
-        <input type="button" value="transform" onclick="transformar()">
+        <input type="button" value="transform" onclick="transformar()" id="btnTransform">
         <input type="text" value="" id="numTransform" >
     </form>
     <script src="js/numero_a_letra.js"></script>
