@@ -6,13 +6,7 @@ function transformar(){
      * CODIGO PENSADO PARA TRABAJAR CON OBJETOS
     *************************************************************/
     let variableProcesada = ((variable)=>{
-        let objGenerado = {
-           grupo1 : null,
-           grupo2 : null,
-           grupo3 : null,
-           grupo4 : null,
-           grupo5 : null
-        };
+        let objGenerado = {};
         let stringInvertido = ((cadena) => {
             let x = cadena.length;
             let cadenaInvertida = '';
@@ -28,32 +22,32 @@ function transformar(){
                objGenerado.grupo1 = variable;
                break;
             case 4: case 5: case 6:
-               objGenerado.grupo2 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
-               objGenerado.grupo1 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
-               break;
+                objGenerado.grupo2 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+                objGenerado.grupo1 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+                break;
             case 7: case 8: case 9:
-            objGenerado.grupo3 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
-            objGenerado.grupo2 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
-            objGenerado.grupo1 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
-               break;
+                objGenerado.grupo3 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+                objGenerado.grupo2 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+                objGenerado.grupo1 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
+                break;
             case 10: case 11: case 12:
-            objGenerado.grupo4 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
-            objGenerado.grupo3 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
-            objGenerado.grupo2 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
-            objGenerado.grupo1 = [stringInvertido[11],stringInvertido[10],stringInvertido[9]].join('');
-               break;
+                objGenerado.grupo4 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+                objGenerado.grupo3 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+                objGenerado.grupo2 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
+                objGenerado.grupo1 = [stringInvertido[11],stringInvertido[10],stringInvertido[9]].join('');
+                break;
             case 13: case 14: case 15:
-            objGenerado.grupo5 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
-            objGenerado.grupo4 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
-            objGenerado.grupo3 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
-            objGenerado.grupo2 = [stringInvertido[11],stringInvertido[10],stringInvertido[9]].join('');
-            objGenerado.grupo1 = [stringInvertido[14],stringInvertido[13],stringInvertido[12]].join('');
-               break;
+                objGenerado.grupo5 = [stringInvertido[2],stringInvertido[1],stringInvertido[0]].join('');
+                objGenerado.grupo4 = [stringInvertido[5],stringInvertido[4],stringInvertido[3]].join('');
+                objGenerado.grupo3 = [stringInvertido[8],stringInvertido[7],stringInvertido[6]].join('');
+                objGenerado.grupo2 = [stringInvertido[11],stringInvertido[10],stringInvertido[9]].join('');
+                objGenerado.grupo1 = [stringInvertido[14],stringInvertido[13],stringInvertido[12]].join('');
+                break;
        }
        return objGenerado;
     })(numIngres);
 
-   console.log(variableProcesada);
+   console.log(Object.keys(variableProcesada).length);
 
     /****   PARTE DE TRES DIGITOS HASTA 15 DIGITOS   *****/
     if(cantDigitos<3){
@@ -96,7 +90,7 @@ function transformar(){
                     ********************************************
                     */
                     
-                    cad=  transDig10_99((numIngres[0]+numIngres[1]),numIngres,cantDigitos)+' mil '+transDig100_999((numIngres[2]+numIngres[3]+numIngres[4]),numIngres,cantDigitos)
+                    cad=  transDig10_99(variableProcesada.grupo1,numIngres,cantDigitos)+' mil '+transDig100_999(variableProcesada.grupo2,numIngres,cantDigitos)
                     document.getElementById('numTransform').value=cad;
                 };
             break;
@@ -264,7 +258,7 @@ function transDig09(numero){
  }
 };
 
-function transDig10_99(numero,cadTotal,cantDigitos){ 
+function transDig10_99(numero,cadTotal,cantDigitos,varprocess){ 
     /*
     ************************************
     TRANSFORMA LOS DIGITOS DEL 10 AL 100
@@ -325,13 +319,23 @@ INVESTIGA ESTA PORCION DE CODIGO AQUI PROBABLEMENTE ESTE EL ERRO
                 case 5://case 6: case 7: case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15:
                 for(var i=0;i<numRedondos.length;i+=2){
                 if((numero[1]==1/*EN ESTE IF SOLO ENTRAN LOS NUMEROS TERMINADOS EN 1*/)){
-                    if(/*EN QUE CASOS NECESITO QUE ME LANZE UN 
+                    /*EN QUE CASOS NECESITO QUE ME LANZE UN 
                     'VEINTIUN' O UN 'VEINTIUNO'
-                    Y ASI CON TODOS 31 41 51 61 ETC...*/true){
-                        cad10_99=numRedondos[i+1]+'un';
-                    }else{
-                    cad10_99=numRedondos[i+1]+transDig09(numero[1]);
-                    }
+                    Y ASI CON TODOS 31 41 51 61 ETC...*/
+                    // if(Object.keys(varprocess).length == 5){
+                    //     switch (varprocess.grupo1.length) {
+                    //         case 1:
+                                
+                    //             break;
+                    //         case 2:
+                    //             break;
+                    //         case 3:
+                    //             break;
+                    //     }  
+                    //     cad10_99=numRedondos[i+1]+'un';
+                    // }else{
+                    // cad10_99=numRedondos[i+1]+transDig09(numero[1]);
+                    // }
                 }else if(numRedondos[i]==parseInt(numero[0])){
                     cad10_99=numRedondos[i+1]+transDig09(numero[1]);
                 }
