@@ -90,7 +90,7 @@ function transformar(){
                     ********************************************
                     */
                     
-                    cad=  transDig10_99(variableProcesada.grupo1,numIngres,cantDigitos)+' mil '+transDig100_999(variableProcesada.grupo2,numIngres,cantDigitos)
+                    cad=  transDig10_99(variableProcesada.grupo1,numIngres,cantDigitos,variableProcesada)+' mil '+transDig100_999(variableProcesada.grupo2,numIngres,cantDigitos)
                     document.getElementById('numTransform').value=cad;
                 };
             break;
@@ -322,20 +322,21 @@ INVESTIGA ESTA PORCION DE CODIGO AQUI PROBABLEMENTE ESTE EL ERRO
                     /*EN QUE CASOS NECESITO QUE ME LANZE UN 
                     'VEINTIUN' O UN 'VEINTIUNO'
                     Y ASI CON TODOS 31 41 51 61 ETC...*/
-                    // if(Object.keys(varprocess).length == 5){
-                    //     switch (varprocess.grupo1.length) {
-                    //         case 1:
-                                
-                    //             break;
-                    //         case 2:
-                    //             break;
-                    //         case 3:
-                    //             break;
-                    //     }  
-                    //     cad10_99=numRedondos[i+1]+'un';
-                    // }else{
-                    // cad10_99=numRedondos[i+1]+transDig09(numero[1]);
-                    // }
+                    if(Object.keys(varprocess).length == 5){
+                        switch (varprocess.grupo1.length) {
+                            case 1:
+                               //SI SE LLENA EL QUINTO GRUPO DE MI OBJGENERADO SIGNIFICA QUE TENEMOS QUE ATACAR AL PRIMERO 
+                               //PERO SI ESTE NO ESTA LLENO  
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }  
+                        cad10_99=numRedondos[i+1]+'un';
+                    }else{
+                    cad10_99=numRedondos[i+1]+transDig09(numero[1]);
+                    }
                 }else if(numRedondos[i]==parseInt(numero[0])){
                     cad10_99=numRedondos[i+1]+transDig09(numero[1]);
                 }
